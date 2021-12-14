@@ -1,82 +1,78 @@
 body {
-  background-color: #D0B8AC;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #D0B8AC;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container {
-  background-color: #FBFEFB;
-  width: 745px;
-  /* margin: 0 auto; */
-  padding: 30px;
-  border-radius: 10px;
+    background-color: #FBFEFB;
+    width: 745px;
+    padding: 30px;
+    border-radius: 10px;
 }
 h1 {
-  font-size: 26px;
+    font-size: 26px;
 }
 input {
-  padding: 10px;
-  border: 2px solid #D0B8AC;
-  border-radius: 10px;
-  outline: none;
-  width: 80%;
+    padding: 10px;
+    border: 2px solid #D0B8AC;
+    border-radius: 10px;
+    outline: none;
+    width: 80%;
 }
 button {
-  padding: 8px 15px;
-  border-radius: 10px;
-  color: white;
-  outline: none;
-  background-color: #FBFEFB;
-  transition: 0.3s;
-  font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    background-color: #FBFEFB;
+    transition: 0.3s;
+    font-weight: bold;
 }
 button:hover {
-  color: #FBFEFB;
+    color: #FBFEFB;
 }
 .btn-add {
-  border: 2px solid #D0B8AC;
-  color: #D0B8AC;
+    border: 2px solid #D0B8AC;
+    color: #D0B8AC;
 }
 .btn-add:hover {
-  background-color: #D0B8AC;
+    background-color: #D0B8AC;
 }
 .btn-update {
-  border: 2px solid #EDC4AB;
-  color: #EDC4AB;
+    border: 2px solid #EDC4AB;
+    color: #EDC4AB;
 }
 .btn-update:hover {
-  background-color:#EDC4AB;
+    background-color:#EDC4AB;
 }
 .btn-delete {
-  border: 2px solid #E5D5C7;
-  color: #E5D5C7;
+    border: 2px solid #E5D5C7;
+    color: #E5D5C7;
 }
 .btn-delete:hover {
-  background-color: #E5D5C7;
+    background-color: #E5D5C7;
 }
 .ListedTasks {
-  display: flex;
-  justify-content: space-between;
-}
-.delete {
-  /* visibility: collapse; */
+    display: flex;
+    justify-content: space-between;
 }
 table {
-  margin: 0 auto;
-  table-layout: auto;
-  width: 100%;
-  text-align: center;
+    margin: 0 auto;
+    table-layout: auto;
+    width: 100%;
+    text-align: center;
 }
 tr {
-  padding: 10px 0;
-  justify-content: space-between;
-  align-items: center;
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
 }
 th {
-  padding: 20px 0;
-  /* width: 100%; */
+    padding: 20px 0;
+    /* width: 100%; */
 
 }
