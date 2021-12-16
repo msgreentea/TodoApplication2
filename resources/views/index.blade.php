@@ -13,9 +13,10 @@
 <body>
     <div class="container">
         <form action="/todo/create" method="POST">
+        @csrf
             <h1 class="title">Todo List</h1>
             <div class="ListedTasks">
-                <input type="text" name="addingTask" placeholder="add something you need to do ~~">
+                <input type="text" name="content" placeholder="add something you need to do ~~">
                 <button class="btn-add">add</button>
             </div>
         </form>
@@ -32,10 +33,17 @@
                 <tr>
                     <td><img src="/img/favicons.png" alt=""></td>
                     <td>{{ $item->created_at }}</td>
-                    <td><input type="text" name="content" value="{{ $item->content }}"></td>
-                    <td><button class="btn-update">update</button></td>
-                    <td><button class="btn-delete">delete</button></td>
-                    <td><input class="delete" type="hidden" name="addedTask" value="addedTask"></td>
+                    {{-- update --}}
+                    <form action="/todo/update" method="post">
+                    @csrf
+                        <td><input type="text" name="content" value="{{ $item->content }}"></td>
+                        <td><button class="btn-update">update</button></td>
+                    </form>
+                    {{-- delete --}}
+                    <form action="/todo/delete" method="post">
+                        <td><button class="btn-delete">delete</button></td>
+                        <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
+                    </form>
                 </tr>
                 @endforeach
             </table>
