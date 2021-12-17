@@ -10,7 +10,7 @@ body {
     /* background-size: cover; */
 }
 .beige {
-    background-color: #D0B8AC;
+    background-color: #d0b8ac;
     width: 90%;
     height: 100%;
     /* padding: 10% 0; */
@@ -18,7 +18,7 @@ body {
     align-items: center;
 }
 .container {
-    background-color: #FBFEFB;
+    background-color: #fbfefb;
     width: 745px;
     margin: 0 auto;
     padding: 30px;
@@ -29,7 +29,7 @@ h1 {
 }
 input {
     padding: 10px;
-    border: 2px solid #D0B8AC;
+    border: 2px solid #d0b8ac;
     border-radius: 10px;
     outline: none;
     width: 80%;
@@ -39,34 +39,34 @@ button {
     border-radius: 10px;
     color: white;
     outline: none;
-    background-color: #FBFEFB;
+    background-color: #fbfefb;
     transition: 0.3s;
     font-weight: bold;
 }
 button:hover {
-    color: #FBFEFB;
+    color: #fbfefb;
     cursor: pointer;
 }
 .btn-add {
-    border: 2px solid #D0B8AC;
-    color: #D0B8AC;
+    border: 2px solid #d0b8ac;
+    color: #d0b8ac;
 }
 .btn-add:hover {
-    background-color: #D0B8AC;
+    background-color: #d0b8ac;
 }
 .btn-update {
-    border: 2px solid #EDC4AB;
-    color: #EDC4AB;
+    border: 2px solid #edc4ab;
+    color: #edc4ab;
 }
 .btn-update:hover {
-    background-color:#EDC4AB;
+    background-color: #edc4ab;
 }
 .btn-delete {
-    border: 2px solid #E5D5C7;
-    color: #E5D5C7;
+    border: 2px solid #e5d5c7;
+    color: #e5d5c7;
 }
 .btn-delete:hover {
-    background-color: #E5D5C7;
+    background-color: #e5d5c7;
 }
 .ListedTasks {
     display: flex;
