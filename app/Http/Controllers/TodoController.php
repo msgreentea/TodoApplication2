@@ -22,19 +22,15 @@ class TodoController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, Task::$rules);
-        // $task = Task::find($request->id);
         $items = $request->all();
         unset($items['_token']);
         Task::where('id', $request->id)->update($items);
-        dd($items);
         return redirect('/');
     }
     public function delete(Request $request)
     {
         $this->validate($request, Task::$rules);
-        $items  = $request->all();
-        unset($items['_token']);
-        Task::where('id', $request->id)->update($items);
+        Task::find($request->id)->delete();
         return redirect('/');
     }
 }

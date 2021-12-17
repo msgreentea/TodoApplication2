@@ -1,15 +1,26 @@
 body {
-    background-color: #D0B8AC;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-image: url(/img/19661113.jpg);
+    /* background-size: cover; */
+}
+.beige {
+    background-color: #D0B8AC;
+    width: 90%;
+    height: 100%;
+    /* padding: 10% 0; */
+    display: flex;
     align-items: center;
 }
 .container {
     background-color: #FBFEFB;
     width: 745px;
+    margin: 0 auto;
     padding: 30px;
     border-radius: 10px;
 }
@@ -69,11 +80,6 @@ table {
 }
 tr {
     padding: 10px 0;
-    justify-content: space-between;
-    align-items: center;
-}
-th {
-    padding: 20px 0;
-    /* width: 100%; */
-
+    width: 100%;
+    line-height: 60px;
 }

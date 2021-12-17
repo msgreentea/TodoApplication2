@@ -11,42 +11,50 @@
 </head>
 
 <body>
-    <div class="container">
-        <form action="/todo/create" method="POST">
-        @csrf
+    <div class="beige">
+        <div class="container">
             <h1 class="title">Todo List</h1>
+            @foreach ($errors->all() as $error)
+                <ul>
+                    <li class="error_message">{{$error}}</li>
+                </ul>
+            @endforeach
+            <form action="{{ route('create') }}" method="POST">
+            @csrf
+                <div class="ListedTasks">
+                    <input type="text" name="content" placeholder="add something you need to do ~~">
+                    <button class="btn-add">add</button>
+                </div>
+            </form>
             <div class="ListedTasks">
-                <input type="text" name="content" placeholder="add something you need to do ~~">
-                <button class="btn-add">add</button>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>created date</th>
+                        <th>task</th>
+                        <th>update</th>
+                        <th>delete</th>
+                    </tr>
+                    @foreach ($items as $item)
+                    <tr>
+                        <td><img src="/img/favicons.png" alt=""></td>
+                        <td>{{ $item->created_at }}</td>
+                        {{-- update --}}
+                        <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
+                        @csrf
+                            <td><input type="text" name="content" value="{{ $item->content }}"></td>
+                            <td><button class="btn-update">update</button></td>
+                        </form>
+                        {{-- delete --}}
+                        <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+                        @csrf
+                            <td><button class="btn-delete">delete</button></td>
+                            <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
+                        </form>
+                    </tr>
+                    @endforeach
+                </table>
             </div>
-        </form>
-        <div class="ListedTasks">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>created date</th>
-                    <th>task</th>
-                    <th>update</th>
-                    <th>delete</th>
-                </tr>
-                @foreach ($items as $item)
-                <tr>
-                    <td><img src="/img/favicons.png" alt=""></td>
-                    <td>{{ $item->created_at }}</td>
-                    {{-- update --}}
-                    <form action="/todo/update" method="post">
-                    @csrf
-                        <td><input type="text" name="content" value="{{ $item->content }}"></td>
-                        <td><button class="btn-update">update</button></td>
-                    </form>
-                    {{-- delete --}}
-                    <form action="/todo/delete" method="post">
-                        <td><button class="btn-delete">delete</button></td>
-                        <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
-                    </form>
-                </tr>
-                @endforeach
-            </table>
         </div>
     </div>
 </body>
