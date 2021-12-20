@@ -36,12 +36,13 @@ class TodoController extends Controller
     public function find(Request $request)
     {
         // シングルクォーテーションは文字列として認識される
-        $item = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+        $item = Task::where('content', 'LIKE', "%{$request->content}%")->first();
         // dd($item);
         $items = [
             'find' => $request->find,
             'item' => $item,
         ];
-        return veiw('/', ['items' => $items]);
+        // return veiw('/', ['items' => $items]);
+        return redirect('/');
     }
 }
