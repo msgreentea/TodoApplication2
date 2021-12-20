@@ -37,12 +37,11 @@ class TodoController extends Controller
     {
         // シングルクォーテーションは文字列として認識される
         $item = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-
-        dd($item);
-        // $items = [
-        //     'find' => $request->find,
-        //     'item' => $item,
-        // ];
-        return veiw('/', $item);
+        // dd($item);
+        $items = [
+            'find' => $request->find,
+            'item' => $item,
+        ];
+        return veiw('/', ['items' => $items]);
     }
 }
