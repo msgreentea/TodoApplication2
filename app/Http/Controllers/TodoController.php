@@ -33,4 +33,16 @@ class TodoController extends Controller
         Task::find($request->id)->delete();
         return redirect('/');
     }
+    public function find(Request $request)
+    {
+        // シングルクォーテーションは文字列として認識される
+        $item = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+
+        dd($item);
+        // $items = [
+        //     'find' => $request->find,
+        //     'item' => $item,
+        // ];
+        return veiw('/', $item);
+    }
 }

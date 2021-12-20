@@ -26,6 +26,23 @@
                     <button class="btn-add">add</button>
                 </div>
             </form>
+            {{-- 検索 --}}
+            <form action="{{ route('find') }}" class="find ListedTasks" method="POST">
+            @csrf
+                <input type="search" name="find" value="{{ request('content') }}" placeholder="type the name of task 8^)">
+                <button class="btn-find">find</button>
+            </form>
+            @if (@isset($item))
+            <table>
+                <tr>
+                    <th>task</th>
+                </tr>
+                <tr>
+                    <td><input type="text" value="{{ $item->content }}"></td>
+                </tr>
+            </table>
+            @endif
+            {{-- list of todos --}}
             <div class="ListedTasks">
                 <table>
                     <tr>
