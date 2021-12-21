@@ -7,43 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 <link rel="shortcut icon" href="/img/snoopy.svg" type="image/x-icon">
-<title>Todo List</title>
+<title>@yield('title')</title>
 </head>
 
 <body>
     <div class="beige">
         <div class="container">
-            <h1 class="title">Todo List</h1>
-            @foreach ($errors->all() as $error)
-                <ul>
-                    <li class="error_message">{{$error}}</li>
-                </ul>
-            @endforeach
-            <form action="{{ route('create') }}" method="POST">
-            @csrf
-                <div class="ListedTasks">
-                    <input type="text" name="content" placeholder="add something you need to do ~~">
-                    <button class="btn-add">add</button>
-                </div>
-            </form>
-            {{-- 検索 --}}
-            <form action="{{ route('find') }}" class="find ListedTasks" method="POST">
-            @csrf
-                <input type="search" name="find" value="{{ request('content') }}" placeholder="type the name of task 8^)">
-                <button class="btn-find">find</button>
-            </form>
-            {{-- @if (@isset($items))
-            <table>
-                <tr>
-                    <th>task</th>
-                </tr>
-                <tr>
-                    <td><input type="text" value="{{ $items->content }}"></td>
-                </tr>
-            </table>
-            @endif --}}
-
-            {{-- list of todos --}}
+            <h1>
+                @yield('title')
+            </h1>
+            @yield('textbox')
             <div class="ListedTasks">
                 <table>
                     <tr>

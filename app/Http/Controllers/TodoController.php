@@ -12,6 +12,13 @@ class TodoController extends Controller
         $items = Task::all();
         return view('index', ['items' => $items]);
     }
+
+    public function confirm(Request $request)
+    {
+        $items = $request->all();
+        return view('confirm', ['items' => $items]);
+    }
+
     public function create(Request $request)
     {
         $this->validate($request, Task::$rules);
@@ -19,6 +26,7 @@ class TodoController extends Controller
         Task::create($task);
         return redirect('/');
     }
+
     public function update(Request $request)
     {
         $this->validate($request, Task::$rules);
@@ -27,22 +35,32 @@ class TodoController extends Controller
         Task::where('id', $request->id)->update($items);
         return redirect('/');
     }
+
     public function delete(Request $request)
     {
         $this->validate($request, Task::$rules);
         Task::find($request->id)->delete();
         return redirect('/');
     }
+
+    public function tofind()
+    {
+        return view('find');
+    }
+
     public function find(Request $request)
     {
         // シングルクォーテーションは文字列として認識される
-        $item = Task::where('content', 'LIKE', "%{$request->content}%")->first();
+        $items = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+        // $item = Task::find($request->input);
         // dd($item);
-        $items = [
-            'find' => $request->find,
-            'item' => $item,
-        ];
+
+        // $items = [
+        //     'content' => $request->content,
+        //     'item' => $item,
+        // ];
+
         // return veiw('/', ['items' => $items]);
-        return redirect('/');
+        return view('find', $items);
     }
 }
