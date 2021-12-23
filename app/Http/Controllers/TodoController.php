@@ -10,19 +10,28 @@ class TodoController extends Controller
     public function index()
     {
         $items = Task::all();
+        // dd($items);
         return view('index', ['items' => $items]);
     }
 
     public function confirm(Request $request)
     {
-        $data = $request->all();
-        return view('confirm', ['data' => $data]);
+        $this->validate($request, Task::$rules);
+        // $data = $request->all();
+        $content = $request->content;
+        $deadline = $request->deadline;
+        $data = [
+            'content' => $content,
+            'deadline' => $deadline
+        ];
+        return view('confirm', $data);
     }
 
     public function create(Request $request)
     {
         $this->validate($request, Task::$rules);
         $task = $request->all();
+        dd($task);
         Task::create($task);
         return redirect('/');
     }

@@ -13,6 +13,6 @@ class Task extends Model
 
     public static $rules = array(
         'content' => 'required | max:20',
-        'deadline' => 'required'
+        'deadline' => 'required | max:15'
     );
 }

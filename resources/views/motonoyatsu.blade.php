@@ -32,16 +32,6 @@
                 <input type="search" name="find" value="{{ request('content') }}" placeholder="type the name of task 8^)">
                 <button class="btn-find">find</button>
             </form>
-            {{-- @if (@isset($items))
-            <table>
-                <tr>
-                    <th>task</th>
-                </tr>
-                <tr>
-                    <td><input type="text" value="{{ $items->content }}"></td>
-                </tr>
-            </table>
-            @endif --}}
 
             {{-- list of todos --}}
             <div class="ListedTasks">

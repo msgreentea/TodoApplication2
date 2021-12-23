@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+@yield('css')
 <link rel="shortcut icon" href="/img/snoopy.svg" type="image/x-icon">
 <title>@yield('title')</title>
 </head>
@@ -19,15 +19,15 @@
             @yield('textbox')
             <div class="ListedTasks">
                 <table>
-                    <tr>
+                    {{-- <tr>
                         <th></th>
                         <th>created date</th>
                         <th>task</th>
                         <th>deadline</th>
                         <th>update</th>
                         <th>delete</th>
-                    </tr>
-            @yield('content')
+                    </tr> --}}
+                    @yield('content')
                 </table>
             </div>
         </div>

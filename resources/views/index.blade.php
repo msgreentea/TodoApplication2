@@ -1,5 +1,12 @@
 @extends('layout')
 
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/share.css') }}">
+@endsection
+
+
 @section('title')
     Todo List
 @endsection
@@ -19,15 +26,17 @@
             <table class="create-table">
                 <tr>
                     <th>task : </th>
+                    {{-- @error --}}
                     <td><input type="text" name="content" placeholder="add something you need to do ~~"></td>
                 </tr>
                 <tr>
                     <th>deadline : </th>
+                    {{-- @error --}}
                     <td><input type="text" name="deadline" placeholder="by when?"></td>
                 </tr>
             </table>
-            <button onclick="location.href='{{ route('confirm') }}'"  class="btn-add">confirm</button>
         </div>
+        <button onclick="location.href='{{ route('confirm') }}'"  class="btn-add btn-confirm">confirm</button>
     </form>
     {{-- find --}}
     <button class="btn-find" onclick="location.href='{{ route('tofind') }}'">wanna find?</button>
@@ -36,27 +45,40 @@
 
 
 @section('content')
-    @foreach ($items as $item)
-        <tr>
-            <td><img src="/img/favicons.png" alt=""></td>
-            <td>{{ $item->created_at }}</td>
-            {{-- deadline --}}
-            <form action="{{ route('update', ['id' => $item->deadline]) }}" method="post" class="deadline">
-            @csrf
-                <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
-            </form>
-            {{-- update --}}
-            <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
-            @csrf
-                <td><input type="text" name="content" value="{{ $item->content }}"></td>
-                <td><button class="btn-update">update</button></td>
-            </form>
-            {{-- delete --}}
-            <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
-            @csrf
-                <td><button class="btn-delete">delete</button></td>
-                <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
-            </form>
-        </tr>
-    @endforeach
+
+    <div class="ListedTasks">
+        <table>
+            <tr>
+                <th></th>
+                <th>created date</th>
+                <th>task</th>
+                <th>deadline</th>
+                <th>update</th>
+                <th>delete</th>
+            </tr>
+            @foreach ($items as $item)
+            <tr>
+                <td><img src="/img/favicons.png" alt=""></td>
+                <td>{{ $item->created_at }}</td>
+                {{-- update --}}
+                <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
+                @csrf
+                    <td><input type="text" name="content" value="{{ old($item->content) }}"></td>
+                    <td><input type="text" name="content" value="{{ old($item->deadline) }}"></td>
+                    <td><button class="btn-update">update</button></td>
+                </form>
+                {{-- delete --}}
+                <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+                    @csrf
+                    <td><button class="btn-delete">delete</button></td>
+                    <td><input type="hidden" name="content" value="{{ $item->content }}"></td>
+                    <td><input type="hidden" name="content" value="{{ $item->deadline }}"></td>
+                    {{-- <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
+                    <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td> --}}
+                </form>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+
 @endsection
