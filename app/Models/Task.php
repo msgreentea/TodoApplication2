@@ -11,5 +11,8 @@ class Task extends Model
 
     protected $fillable = ['content'];
 
-    public static $rules = array('content' => 'required | max:20');
+    public static $rules = array(
+        'content' => 'required | max:20',
+        'deadline' => 'required'
+    );
 }

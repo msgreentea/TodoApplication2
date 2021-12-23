@@ -15,8 +15,17 @@
     @endforeach
     <form action="{{ route('confirm') }}" method="get">
     @csrf
-        <div class="ListedTasks">
-            <input type="text" name="content" placeholder="add something you need to do ~~">
+        <div class="ListedTasks create">
+            <table class="create-table">
+                <tr>
+                    <th>task : </th>
+                    <td><input type="text" name="content" placeholder="add something you need to do ~~"></td>
+                </tr>
+                <tr>
+                    <th>deadline : </th>
+                    <td><input type="text" name="deadline" placeholder="by when?"></td>
+                </tr>
+            </table>
             <button onclick="location.href='{{ route('confirm') }}'"  class="btn-add">confirm</button>
         </div>
     </form>
@@ -31,8 +40,13 @@
         <tr>
             <td><img src="/img/favicons.png" alt=""></td>
             <td>{{ $item->created_at }}</td>
+            {{-- deadline --}}
+            <form action="{{ route('update', ['id' => $item->deadline]) }}" method="post" class="deadline">
+            @csrf
+                <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
+            </form>
             {{-- update --}}
-            <form action="{{ route('update', ['id' => $item->   id]) }}" method="post">
+            <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
             @csrf
                 <td><input type="text" name="content" value="{{ $item->content }}"></td>
                 <td><button class="btn-update">update</button></td>

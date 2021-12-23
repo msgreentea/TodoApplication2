@@ -15,8 +15,8 @@ class TodoController extends Controller
 
     public function confirm(Request $request)
     {
-        $items = $request->all();
-        return view('confirm', ['items' => $items]);
+        $data = $request->all();
+        return view('confirm', ['data' => $data]);
     }
 
     public function create(Request $request)

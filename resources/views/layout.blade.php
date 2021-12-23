@@ -23,6 +23,7 @@
                         <th></th>
                         <th>created date</th>
                         <th>task</th>
+                        <th>deadline</th>
                         <th>update</th>
                         <th>delete</th>
                     </tr>

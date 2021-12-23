@@ -19,7 +19,7 @@ body {
 }
 .container {
     background-color: #fbfefb;
-    width: 745px;
+    width: 800px;
     margin: 0 auto;
     padding: 30px;
     border-radius: 10px;
@@ -42,7 +42,20 @@ button {
     background-color: #fbfefb;
     transition: 0.3s;
     font-weight: bold;
+    width: 100px;
+    height: 40px;
 }
+
+.create {
+    display: flex;
+    align-items: center;
+}
+
+.create-table th {
+    width: 15%;
+    justify-content: start;
+}
+
 button:hover {
     color: #fbfefb;
     cursor: pointer;
