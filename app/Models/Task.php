@@ -9,10 +9,10 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content'];
+    protected $fillable = ['content', 'deadline'];
 
     public static $rules = array(
-        'content' => 'required | max:20',
-        'deadline' => 'required | max:15'
+        'content' => 'required | max:50',
+        'deadline' => 'required | max:30'
     );
 }

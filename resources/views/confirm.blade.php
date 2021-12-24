@@ -39,12 +39,12 @@ Todo List - Confimation
         <form action="{{ route('create') }}" method="post">
         @csrf
         <tr>
-            <th>task : </th>
+            <th>task  :  </th>
             <td>{{ $content }}</td>
             <input type="hidden" name="content" value="{{$content}}">
         </tr>
         <tr>
-            <th>deadline : </th>
+            <th>deadline  :  </th>
             <td>{{ $deadline }}</td>
             <input type="hidden" name="deadline" value="{{$deadline}}">
         </tr>

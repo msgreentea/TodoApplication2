@@ -64,14 +64,14 @@ class TodoController extends Controller
     public function find(Request $request)
     {
         // シングルクォーテーションは文字列として認識される
-        $items = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+        $task = Task::where('content', 'LIKE', "%{$request->content}%")->get();
         // $item = Task::find($request->input);
-        // dd($item);
+        dd($task);
 
-        // $items = [
-        //     'content' => $request->content,
-        //     'item' => $item,
-        // ];
+        $items = [
+            'content' => $request->content,
+            'task' => $task,
+        ];
 
         // return veiw('/', ['items' => $items]);
         return view('find', $items);
