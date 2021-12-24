@@ -17,7 +17,7 @@ class TodoController extends Controller
     public function confirm(Request $request)
     {
         $this->validate($request, Task::$rules);
-        // $items = $request->all();
+
         $content = $request->content;
         $deadline = $request->deadline;
         $items = [
@@ -30,16 +30,19 @@ class TodoController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Task::$rules);
+
         $task = $request->all();
-        dd($task);
+        // dd($task);
         Task::create($task);
         return redirect('/');
     }
 
     public function update(Request $request)
     {
-        $this->validate($request, Task::$rules);
+        // $this->validate($request, Task::$rules);
+
         $items = $request->all();
+        // dd($items);
         unset($items['_token']);
         Task::where('id', $request->id)->update($items);
         return redirect('/');
@@ -47,7 +50,8 @@ class TodoController extends Controller
 
     public function delete(Request $request)
     {
-        $this->validate($request, Task::$rules);
+        // $this->validate($request, Task::$rules);
+
         Task::find($request->id)->delete();
         return redirect('/');
     }

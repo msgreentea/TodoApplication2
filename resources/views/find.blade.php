@@ -30,7 +30,7 @@
         <td><img src="/img/favicons.png" alt=""></td>
         <td>{{ $item->created_at }}</td>
         {{-- update --}}
-        <form action="{{ route('update', ['id' => $item->   id]) }}" method="post">
+        <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
         @csrf
             <td><input type="text" name="content" value="{{ $item->content }}"></td>
             <td><button class="btn-update">update</button></td>

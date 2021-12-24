@@ -26,12 +26,10 @@
             <table class="create-table">
                 <tr>
                     <th>task : </th>
-                    {{-- @error --}}
                     <td><input type="text" name="content" placeholder="add something you need to do ~~"></td>
                 </tr>
                 <tr>
                     <th>deadline : </th>
-                    {{-- @error --}}
                     <td><input type="text" name="deadline" placeholder="by when?"></td>
                 </tr>
             </table>
@@ -39,7 +37,7 @@
         <button onclick="location.href='{{ route('confirm') }}'"  class="btn-add btn-confirm">confirm</button>
     </form>
     {{-- find --}}
-    <button class="btn-find" onclick="location.href='{{ route('tofind') }}'">wanna find?</button>
+    <button class="btn-find" onclick="location.href='{{ route('tofind') }}'">find</button>
 @endsection
 
 
@@ -63,8 +61,8 @@
                 {{-- update --}}
                 <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
                 @csrf
-                    <td><input type="text" name="content" value="{{ old($item->content) }}"></td>
-                    <td><input type="text" name="content" value="{{ old($item->deadline) }}"></td>
+                    <td><input type="text" name="content" value="{{ $item->content }}"></td>
+                    <td><input type="text" name="content" value="{{ $item->deadline }}"></td>
                     <td><button class="btn-update">update</button></td>
                 </form>
                 {{-- delete --}}
@@ -73,8 +71,6 @@
                     <td><button class="btn-delete">delete</button></td>
                     <td><input type="hidden" name="content" value="{{ $item->content }}"></td>
                     <td><input type="hidden" name="content" value="{{ $item->deadline }}"></td>
-                    {{-- <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
-                    <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td> --}}
                 </form>
             </tr>
             @endforeach
