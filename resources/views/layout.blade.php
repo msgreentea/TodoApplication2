@@ -17,18 +17,11 @@
                 @yield('title')
             </h1>
             @yield('textbox')
+            {{-- <table>
+
+            </table> --}}
+            @yield('content')
             <div class="ListedTasks">
-                <table>
-                    {{-- <tr>
-                        <th></th>
-                        <th>created date</th>
-                        <th>task</th>
-                        <th>deadline</th>
-                        <th>update</th>
-                        <th>delete</th>
-                    </tr> --}}
-                    @yield('content')
-                </table>
             </div>
         </div>
     </div>

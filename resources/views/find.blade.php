@@ -1,8 +1,16 @@
 @extends('layout')
 
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/css/find.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/share.css') }}">
+@endsection
+
+
 @section('title')
     Todo List - Find
 @endsection
+
 
 @section('textbox')
     <form action="{{ route('find') }}" method="POST">

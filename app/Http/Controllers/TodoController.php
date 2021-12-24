@@ -17,14 +17,14 @@ class TodoController extends Controller
     public function confirm(Request $request)
     {
         $this->validate($request, Task::$rules);
-        // $data = $request->all();
+        // $items = $request->all();
         $content = $request->content;
         $deadline = $request->deadline;
-        $data = [
+        $items = [
             'content' => $content,
             'deadline' => $deadline
         ];
-        return view('confirm', $data);
+        return view('confirm', $items);
     }
 
     public function create(Request $request)
