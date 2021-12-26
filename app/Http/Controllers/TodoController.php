@@ -63,12 +63,14 @@ class TodoController extends Controller
     {
         // シングルクォーテーションは文字列として認識される
         $task = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+        $id = Task::get(['id']);
 
         $items = [
             'content' => $request->content,
             'task' => $task,
+            'id' => $id
         ];
-        dd($task);
+        // dd($task);
         return view('find', ['items' => $items]);
     }
 }
