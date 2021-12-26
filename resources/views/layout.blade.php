@@ -17,9 +17,6 @@
                 @yield('title')
             </h1>
             @yield('textbox')
-            {{-- <table>
-
-            </table> --}}
             @yield('content')
             <div class="ListedTasks">
             </div>

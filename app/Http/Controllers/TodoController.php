@@ -39,10 +39,9 @@ class TodoController extends Controller
 
     public function update(Request $request)
     {
-        // $this->validate($request, Task::$rules);
+        $this->validate($request, Task::$rules);
 
         $items = $request->all();
-        // dd($items);
         unset($items['_token']);
         Task::where('id', $request->id)->update($items);
         return redirect('/');
@@ -50,7 +49,7 @@ class TodoController extends Controller
 
     public function delete(Request $request)
     {
-        // $this->validate($request, Task::$rules);
+        $this->validate($request, Task::$rules);
 
         Task::find($request->id)->delete();
         return redirect('/');
@@ -65,15 +64,11 @@ class TodoController extends Controller
     {
         // シングルクォーテーションは文字列として認識される
         $task = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-        // $item = Task::find($request->input);
-        dd($task);
 
         $items = [
             'content' => $request->content,
             'task' => $task,
         ];
-
-        // return veiw('/', ['items' => $items]);
         return view('find', $items);
     }
 }

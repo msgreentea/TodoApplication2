@@ -7,9 +7,11 @@
 @endsection
 
 
+
 @section('title')
     Todo List - Find
 @endsection
+
 
 
 @section('textbox')
@@ -23,7 +25,10 @@
     <button class="btn-find" onclick="location.href='{{ route('index') }}'">home</button>
 @endsection
 
+
+
 @section('content')
+
     @if (@isset($item))
     @foreach ($items as $item)
     <tr>
@@ -44,4 +49,5 @@
     </tr>
     @endforeach
     @endif
+
 @endsection

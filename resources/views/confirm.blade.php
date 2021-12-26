@@ -15,25 +15,6 @@ Todo List - Confimation
 
 
 @section('content')
-{{-- <table>
-    <tr>
-            <th>task</th>
-            <th>deadline</th>
-        </tr>
-        <tr>
-            <form action="{{ route('create') }}" method="post">
-                @csrf
-                <td>{{ $content }}</td>
-                <input type="hidden" name="content" value="{{$content}}">
-                <td>{{ $deadline }}</td>
-                <input type="hidden" name="deadline" value="{{$deadline}}">
-            </tr>
-        </table>
-        <button class="btn-add btn-alongside">add!</button>
-    </form>
-    <button class="btn-update btn-alongside" onclick="location.href='{{ route('index') }}'">previous</button> --}}
-
-
 
     <table>
         <form action="{{ route('create') }}" method="post">
