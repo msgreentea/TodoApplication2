@@ -29,7 +29,7 @@
 
 @section('content')
 
-    @if (@isset($item))
+    @if (isset($items))
     @foreach ($items as $item)
     <tr>
         <td><img src="/img/favicons.png" alt=""></td>

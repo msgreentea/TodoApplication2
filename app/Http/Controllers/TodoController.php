@@ -39,7 +39,6 @@ class TodoController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, Task::$rules);
 
         $items = $request->all();
         unset($items['_token']);
@@ -49,7 +48,6 @@ class TodoController extends Controller
 
     public function delete(Request $request)
     {
-        $this->validate($request, Task::$rules);
 
         Task::find($request->id)->delete();
         return redirect('/');
@@ -67,8 +65,8 @@ class TodoController extends Controller
 
         $items = [
             'content' => $request->content,
-            'task' => $task,
+            'task' => $task->content,
         ];
-        return view('find', $items);
+        return view('find', ['items' => $items]);
     }
 }
