@@ -62,7 +62,7 @@
                 <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
                 @csrf
                     <td><input type="text" name="content" value="{{ $item->content }}"></td>
-                    <td><input type="text" name="content" value="{{ $item->deadline }}"></td>
+                    <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
                     <td><button class="btn-update">update</button></td>
                 </form>
                 {{-- delete --}}

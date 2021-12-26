@@ -42,6 +42,7 @@ class TodoController extends Controller
 
         $items = $request->all();
         unset($items['_token']);
+
         Task::where('id', $request->id)->update($items);
         return redirect('/');
     }
@@ -65,8 +66,9 @@ class TodoController extends Controller
 
         $items = [
             'content' => $request->content,
-            'task' => $task->content,
+            'task' => $task,
         ];
+        dd($task);
         return view('find', ['items' => $items]);
     }
 }

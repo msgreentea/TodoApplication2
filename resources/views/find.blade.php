@@ -33,7 +33,6 @@
     @foreach ($items as $item)
     <tr>
         <td><img src="/img/favicons.png" alt=""></td>
-        <td>{{ $item->created_at }}</td>
         {{-- update --}}
         <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
         @csrf
