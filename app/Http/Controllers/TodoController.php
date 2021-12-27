@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $select = $request->select;
+        // $select = $request->select;
 
         $items = Task::all();
         $items = Task::simplePaginate(3);
@@ -71,11 +71,9 @@ class TodoController extends Controller
         $items = [
             'content' => $request->content,
             'task' => $task,
-            'id' => $id
+            'id' => $request->id
         ];
-        // dd($task);
         // return view('find', ['items' => $items]);
         return view('find', $items);
-        // return view('find', ['task' => $task]);
     }
 }
