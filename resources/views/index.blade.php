@@ -51,6 +51,7 @@
                 <th>created date</th>
                 <th>task</th>
                 <th>deadline</th>
+                <th>status</th>
                 <th>update</th>
                 <th>delete</th>
             </tr>
@@ -60,9 +61,17 @@
                 <td>{{ $item->created_at }}</td>
                 {{-- update --}}
                 <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
-                @csrf
+                    @csrf
                     <td><input type="text" name="content" value="{{ $item->content }}"></td>
                     <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
+                    {{-- status --}}
+                    <td>
+                        <select name="select" id="select" class="select">
+                            <option value="new" selected>new</option>
+                            <option value="inProgress">in progress</option>
+                            <option value="completed">completed</option>
+                        </select>
+                    </td>
                     <td><button class="btn-update">update</button></td>
                 </form>
                 {{-- delete --}}
@@ -75,6 +84,9 @@
             </tr>
             @endforeach
         </table>
+    </div>
+    <div class="pagination">
+        {{ $items->links() }}
     </div>
 
 @endsection
