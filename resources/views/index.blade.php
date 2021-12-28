@@ -66,10 +66,15 @@
                     <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
                     {{-- status --}}
                     <td>
-                        <select name="select" id="select" class="select">
-                            <option value="new" selected>new</option>
-                            <option value="inProgress">in progress</option>
-                            <option value="completed">completed</option>
+                        <select name="status" id="select" class="select">
+                            @if ($item->status === "new")
+                                <option value="new" selected>new</option>
+                            @else
+                                <option value="new">new</option>
+                            @endif
+
+                            <option value="inProgress" @if($item->status === "inProgress") selected @endif>in progress</option>
+                            <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
                         </select>
                     </td>
                     <td><button class="btn-update">update</button></td>

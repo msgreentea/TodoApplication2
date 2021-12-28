@@ -11,6 +11,7 @@ class TodoController extends Controller
     {
         // $select = $request->select;
 
+        // $tasks = Task:
         $items = Task::all();
         $items = Task::simplePaginate(3);
         // dd($items);
@@ -23,9 +24,10 @@ class TodoController extends Controller
 
         $content = $request->content;
         $deadline = $request->deadline;
+
         $items = [
             'content' => $content,
-            'deadline' => $deadline
+            'deadline' => $deadline,
         ];
         return view('confirm', $items);
     }
@@ -65,14 +67,13 @@ class TodoController extends Controller
     public function find(Request $request)
     {
         // シングルクォーテーションは文字列として認識される
-        $task = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-        $id = Task::get(['id']);
+        $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
 
         $items = [
             'content' => $request->content,
-            'task' => $task,
-            'id' => $request->id
+            'tasks' => $tasks,
         ];
+        // dd($items);
         // return view('find', ['items' => $items]);
         return view('find', $items);
     }

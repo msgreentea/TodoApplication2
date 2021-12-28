@@ -29,21 +29,21 @@
 
 @section('content')
 
-    @if (isset($items))
-    @foreach ($items as $item)
+    @if (isset($tasks))
+    @foreach ($tasks as $task)
     <tr>
         <td><img src="/img/favicons.png" alt=""></td>
         {{-- update --}}
-        <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
+        <form action="{{ route('update', ['id' => $task->id]) }}" method="post">
         @csrf
-            <td><input type="text" name="content" value="{{ $item->content }}"></td>
+            <td><input type="text" name="content" value="{{ $task->content }}"></td>
             <td><button class="btn-update">update</button></td>
         </form>
         {{-- delete --}}
-        <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+        <form action="{{ route('delete', ['id' => $task->id]) }}" method="post">
         @csrf
             <td><button class="btn-delete">delete</button></td>
-            <td><input class="delete" type="hidden" name="content" value="{{ $item->content }}"></td>
+            <td><input class="delete" type="hidden" name="content" value="{{ $task->content }}"></td>
         </form>
     </tr>
     @endforeach
