@@ -10,6 +10,7 @@ body {
 }
 .beige {
     background-color: #d0b8ac;
+    /* background-color: rgb(208, 184, 172); */
     width: 90%;
     height: 100%;
     display: flex;
@@ -19,9 +20,9 @@ body {
 }
 .container {
     background-color: #fbfefb;
-    width: 1000px;
+    width: 85%;
     margin: 0 auto;
-    padding: 30px;
+    padding: 3%;
     border-radius: 10px;
 }
 h1 {
@@ -32,7 +33,7 @@ input {
     border: 2px solid #d0b8ac;
     border-radius: 10px;
     outline: none;
-    width: 90%;
+    width: 80%;
 }
 .ListedTasks {
     display: flex;
@@ -40,9 +41,10 @@ input {
 }
 
 table {
+    width: 100%;
+    border-collapse: collapse;
     margin: 0 auto;
     table-layout: auto;
-    width: 100%;
     text-align: center;
 }
 tr {
@@ -115,4 +117,32 @@ button:hover {
 .pagination {
     text-align: center;
     padding-top: 30px;
+}
+
+/* レスポンシブ */
+/* タブレット */
+@media (max-width: 1024px) {
+    .container {
+        margin: 10% auto;
+        width: 90%;
+    }
+    /* .beige {
+        padding: 5%;
+    } */
+    tr {
+        width: 80%;
+    }
+    input {
+        width: 80%;
+    }
+    .hms {
+        display: none;
+    }
+}
+@media (max-width: 599px) {
+    input,
+    td {
+        display: block;
+        width: 100%;
+    }
 }

@@ -9,9 +9,6 @@ class TodoController extends Controller
 {
     public function index()
     {
-        // $select = $request->select;
-
-        // $tasks = Task:
         $items = Task::all();
         $items = Task::simplePaginate(3);
         // dd($items);
