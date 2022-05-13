@@ -40,12 +40,15 @@ input {
     justify-content: space-between;
 }
 
-table {
+.table-pc {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
     table-layout: auto;
     text-align: center;
+}
+.table-smart-phone {
+    display: none;
 }
 tr {
     padding: 10px 0;
@@ -126,14 +129,23 @@ button:hover {
         margin: 10% auto;
         width: 90%;
     }
-    /* .beige {
-        padding: 5%;
-    } */
-    tr {
-        width: 80%;
+    table tr th {
+        display: none;
     }
-    input {
-        width: 80%;
+
+    table,
+    tr,
+    th,
+    td {
+        display: block;
+        width: 100%;
+    }
+    table td {
+        display: flex;
+    }
+    table td::before {
+        content: attr(label);
+        margin-right: 5%;
     }
     .hms {
         display: none;
@@ -144,5 +156,11 @@ button:hover {
     td {
         display: block;
         width: 100%;
+    }
+    .table-pc {
+        display: none;
+    }
+    .table-smart-phone {
+        display: flex;
     }
 }
