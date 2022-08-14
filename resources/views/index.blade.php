@@ -22,15 +22,17 @@
     @endforeach
     <form action="{{ route('confirm') }}" method="get">
     @csrf
-        <div class="ListedTasks create">
-            <table class="create-table">
+        <div class="create_task">
+            <table>
                 <tr>
                     <th>task : </th>
-                    <td label=""><input type="text" name="content" placeholder="add something you need to do ~~"></td label="">
+                    {{-- <td><input type="text" name="content" placeholder="add something you need to do"></td> --}}
+                    <td><input type="text" name="content" placeholder="追加するタスクを入力"></td>
                 </tr>
                 <tr>
                     <th>deadline : </th>
-                    <td label=""><input type="text" name="deadline" placeholder="by when?"></td label="">
+                    {{-- <td><input type="text" name="deadline" placeholder="by when?"></td> --}}
+                    <td><input type="text" name="deadline" placeholder="期限を入力"></td>
                 </tr>
             </table>
         </div>
@@ -48,7 +50,7 @@
         {{-- パソコン --}}
         <table class="table-pc">
             <tr>
-                <th></th>
+                {{-- <th></th> --}}
                 <th>created date</th>
                 <th>task</th>
                 <th>deadline</th>
@@ -58,14 +60,14 @@
             </tr>
             @foreach ($items as $item)
             <tr>
-                <td><img src="/img/favicons.png" alt=""></td label="">
+                {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
                 {{-- <td label="">{{ $item->created_at }}</td label=""> --}}
                 <td label="created date">{{ $item->created_at->format('Y-m-d') }} <span class="hms">{{ $item->created_at->format('H:i:s') }}</span></td>
                 {{-- update --}}
                 <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
                     @csrf
-                    <td label="task"><input type="text" name="content" value="{{ $item->content }}"></td>
-                    <td label="deadline"><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
+                    <td label="task"><input class="listed-input" type="text" name="content" value="{{ $item->content }}"></td>
+                    <td label="deadline"><input class="listed-input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
                     {{-- status --}}
                     <td label="status">
                         <select name="status" id="select" class="select">

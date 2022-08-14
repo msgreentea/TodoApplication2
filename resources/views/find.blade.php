@@ -18,7 +18,8 @@
     <form action="{{ route('find') }}" method="POST">
     @csrf
         <div class="ListedTasks">
-            <input type="text" name="content" value="{{request('content')}}" placeholder="type the name of task you might have added before">
+            {{-- <input type="text" name="content" value="{{request('content')}}" placeholder="type the name of task you might have added before"> --}}
+            <input type="text" name="content" value="{{request('content')}}" placeholder="タスク名を入力">
             <button class="btn-add">find!</button>
         </div>
     </form>
