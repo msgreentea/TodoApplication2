@@ -12,7 +12,7 @@ class Task extends Model
     protected $fillable = ['content', 'deadline', 'status'];
 
     public static $rules = array(
-        'content' => 'required | max:50',
-        'deadline' => 'required | max:30'
+        'content' => 'required | max:20',
+        'deadline' => 'required | max:20'
     );
 }

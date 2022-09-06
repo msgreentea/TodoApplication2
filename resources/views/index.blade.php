@@ -2,49 +2,54 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/share.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 @endsection
 
 
 @section('title')
-    ToDoリスト
+    ToDoリスト - ホーム
 @endsection
 
 
-
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    追加フォーム（※上部分）
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('textbox')
-    {{-- confirm before create --}}
-    @foreach ($errors->all() as $error)
-    <ul>
-        <li class="error_message">{{$error}}</li>
-    </ul>
-    @endforeach
     <form action="{{ route('confirm') }}" method="get">
-    @csrf
-        <div class="create_task">
-            <table>
-                <tr>
-                    <th>タスク : </th>
-                    <td><input type="text" name="content" placeholder="追加するタスクを入力"></td>
-                </tr>
-                <tr>
-                    <th>期限 : </th>
-                    <td><input type="text" name="deadline" placeholder="期限を入力"></td>
-                </tr>
-            </table>
-        </div>
-        <button onclick="location.href='{{ route('confirm') }}'"  class="btn-add btn-confirm">確認画面へ</button>
+        @csrf
+        <table class="input_task center">
+            <tr>
+                <th>タスク :</th>
+                <td>
+                    <input type="text" name="content" placeholder="追加するタスクを入力">
+                    @error('content')
+                        <p class="error_message">{{ $message }}</p>
+                    @enderror
+                </td>
+            </tr>
+            <tr>
+                <th>期限 :</th>
+                <td>
+                    <input type="text" name="deadline" placeholder="期限を入力">
+                    @error('deadline')
+                        <p class="error_message">{{ $message }}</p>
+                    @enderror
+                </td>
+            </tr>
+        </table>
+        <button onclick="location.href='{{ route('confirm') }}'"  class="btn-send btn-confirm center">確認画面へ</button>
     </form>
     {{-- find --}}
-    <button class="btn-find" onclick="location.href='{{ route('tofind') }}'">追加済みタスクを検索</button>
+    <button class="btn-long" onclick="location.href='{{ route('tofind') }}'">検索ページへ</button>
 @endsection
 
 
-
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    追加済みタスクたち（※下部分）
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
-
-    <div class="ListedTasks">
+    <div class="listed_tasks">
         {{-- パソコン --}}
         <table class="table-pc">
             <tr>
@@ -59,7 +64,6 @@
             @foreach ($items as $item)
             <tr>
                 {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
-                {{-- <td label="">{{ $item->created_at }}</td label=""> --}}
                 <td label="created date">{{ $item->created_at->format('Y / m / d') }}
                     {{-- <span class="hms">{{ $item->created_at->format('H:i:s') }}</span> --}}
                 </td>
@@ -70,17 +74,17 @@
                     <td label="deadline"><input class="listed-input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
                     {{-- status --}}
                     <td label="status">
-                        <select name="status" id="select" class="select">
-                            @if ($item->status === "追加済み")
-                                <option value="追加済み" selected>追加済み</option>
+                        <select name="status" id="select">
+                            @if ($item->status === "見着手")
+                                <option value="見着手" selected>見着手</option>
                             @else
-                                <option value="追加済み">追加済み</option>
+                                <option value="見着手">見着手</option>
                             @endif
 
                             <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>
                             <option value="完了" @if($item->status === "完了") selected @endif>完了</option>
                         </select>
-                        {{-- <select name="status" id="select" class="select">
+                        {{-- <select name="status" id="select">
                             @if ($item->status === "new")
                                 <option value="new" selected>new</option>
                             @else
@@ -103,9 +107,9 @@
             </tr>
             @endforeach
         </table>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-            スマホ
-        * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    スマホ
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
         <table class="table-smart-phone">
             @foreach ($items as $item)
             <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
@@ -121,9 +125,9 @@
                 <td label="status">
                     <select name="status" id="select" class="select">
                         @if ($item->status === "追加済み")
-                            <option value="追加済み" selected>追加済み</option>
+                            <option value="見着手" selected>見着手</option>
                         @else
-                            <option value="追加済み">追加済み</option>
+                            <option value="見着手">見着手</option>
                         @endif
 
                         <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>

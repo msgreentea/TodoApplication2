@@ -1,8 +1,9 @@
-table {
+/* table {
     width: 100%;
     display: block;
 }
 tr {
+    display: flex;
     text-align: left;
     line-height: 2;
 }
@@ -13,4 +14,4 @@ tr {
 }
 button {
     margin: 0 10px;
-}
+} */

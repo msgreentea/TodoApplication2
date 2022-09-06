@@ -9,7 +9,7 @@
 
 
 @section('title')
-    Todo List - Find
+    ToDoリスト - 検索ページ
 @endsection
 
 
@@ -17,13 +17,15 @@
 @section('textbox')
     <form action="{{ route('find') }}" method="POST">
     @csrf
-        <div class="ListedTasks">
-            {{-- <input type="text" name="content" value="{{request('content')}}" placeholder="type the name of task you might have added before"> --}}
-            <input type="text" name="content" value="{{request('content')}}" placeholder="タスク名を入力">
-            <button class="btn-add">find!</button>
+        <div class="input_task center">
+            <input type="text" name="content" value="{{ request('content')}}" placeholder="追加済みタスクを入力">
+            <button class="btn-send center">検索</button>
         </div>
+        @error('content')
+            <p class="error_message">{{ $message }}</p>
+        @enderror
     </form>
-    <button class="btn-find" onclick="location.href='{{ route('index') }}'">home</button>
+    <button class="btn-long" onclick="location.href='{{ route('index') }}'">ホーム画面に戻る</button>
 @endsection
 
 
@@ -38,12 +40,12 @@
         <form action="{{ route('update', ['id' => $task->id]) }}" method="post">
         @csrf
             <td><input type="text" name="content" value="{{ $task->content }}"></td>
-            <td><button class="btn-update">update</button></td>
+            <td><button class="btn-update">更新</button></td>
         </form>
         {{-- delete --}}
         <form action="{{ route('delete', ['id' => $task->id]) }}" method="post">
         @csrf
-            <td><button class="btn-delete">delete</button></td>
+            <td><button class="btn-delete">削除</button></td>
             <td><input class="delete" type="hidden" name="content" value="{{ $task->content }}"></td>
         </form>
     </tr>

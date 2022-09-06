@@ -11,15 +11,13 @@
 </head>
 
 <body>
-    <div class="beige">
+    <div class="background">
         <div class="container">
             <h1>
                 @yield('title')
             </h1>
             @yield('textbox')
             @yield('content')
-            <div class="ListedTasks">
-            </div>
         </div>
     </div>
 </body>

@@ -14,13 +14,3 @@
 .find {
     padding: 30px 0;
 }
-
-.select {
-    border: 2px solid #d0b8ac;
-    color: #d0b8ac;
-    padding: 8px 2px;
-    border-radius: 10px;
-    text-align: center;
-    outline: none;
-    font-weight: bold;
-}
