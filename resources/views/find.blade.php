@@ -3,7 +3,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('/css/find.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/share.css') }}">
 @endsection
 
 
@@ -13,13 +12,19 @@
 @endsection
 
 
-
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    追加フォーム（※上部分）
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('textbox')
     <form action="{{ route('find') }}" method="POST">
-    @csrf
+        @csrf
         <div class="input_task center">
-            <input type="text" name="content" value="{{ request('content')}}" placeholder="追加済みタスクを入力">
-            <button class="btn-send center">検索</button>
+            <p class="left">
+                <input type="text" name="content" value="{{ request('content')}}" placeholder="追加済みタスクを入力">
+            </p>
+            <p class="right">
+                <button class="btn-send center">検索</button>
+            </p>
         </div>
         @error('content')
             <p class="error_message">{{ $message }}</p>
@@ -29,7 +34,9 @@
 @endsection
 
 
-
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    検索結果（※下部分）
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
 
     @if (isset($tasks))

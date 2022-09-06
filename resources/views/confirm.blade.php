@@ -2,40 +2,45 @@
 
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/share.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/confirm.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 @endsection
 
 
 
 @section('title')
-Todo List - Confimation
+ToDoリスト - 確認画面
 @endsection
 
 
 
 @section('content')
-
     <form action="{{ route('create') }}" method="post">
     @csrf
-        <table>
-            <tr>
-                <th>task  :  </th>
-                <td>{{ $content }}</td>
-                <input type="hidden" name="content" value="{{$content}}">
-            </tr>
-            <tr>
-                <th>deadline  :  </th>
-                <td>{{ $deadline }}</td>
-                <input type="hidden" name="deadline" value="{{$deadline}}">
-            </tr>
-                <input type="hidden" name="status" value="new">
-        </table>
+        <div class="input_task center">
+            <p class="left">
+                タスク :
+            </p>
+            <p class="right">
+                {{-- {{ $content }} --}}
+                <input type="text" value="{{ $content }}">
+                <input type="hidden" name="content" value="{{ $content }}">
+            </p>
+        </div>
+        <div class="input_task center">
+            <p class="left">
+                期限 :
+            </p>
+            <p class="right">
+                {{-- {{ $deadline }} --}}
+                <input type="text" value="{{ $deadline }}">
+                <input type="hidden" name="deadline" value="{{ $deadline }}">
+            </p>
+        </div>
+        <input type="hidden" name="status" value="new">
         <div class="btns">
-            {{-- <a href=""></a> to index --}}
-            <button class="btn-add btn-alongside">add!</button>
+            <button class="btn-send center">タスクを作成する</button>
         </div>
     </form>
-    <button class="btn-update btn-alongside" onclick="location.href='{{ route('index') }}';return false;">previous</button>
+    <button class="btn-long" onclick="location.href='{{ route('index') }}';return false;">ホームに戻る</button>
 
 @endsection

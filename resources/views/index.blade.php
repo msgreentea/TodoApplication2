@@ -2,7 +2,6 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/css/share.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 @endsection
 
@@ -18,26 +17,28 @@
 @section('textbox')
     <form action="{{ route('confirm') }}" method="get">
         @csrf
-        <table class="input_task center">
-            <tr>
-                <th>タスク :</th>
-                <td>
-                    <input type="text" name="content" placeholder="追加するタスクを入力">
-                    @error('content')
-                        <p class="error_message">{{ $message }}</p>
-                    @enderror
-                </td>
-            </tr>
-            <tr>
-                <th>期限 :</th>
-                <td>
-                    <input type="text" name="deadline" placeholder="期限を入力">
-                    @error('deadline')
-                        <p class="error_message">{{ $message }}</p>
-                    @enderror
-                </td>
-            </tr>
-        </table>
+        <div class="input_task center">
+            <p class="left">
+                タスク :
+            </p>
+            <p class="right">
+                <input type="text" name="content" placeholder="追加するタスクを入力">
+            </p>
+        </div>
+        @error('content')
+            <p class="error_message">{{ $message }}</p>
+        @enderror
+        <div class="input_task center">
+            <p class="left">
+                期限 :
+            </p>
+            <p class="right">
+                <input type="text" name="deadline" placeholder="期限を入力">
+            </p>
+        </div>
+        @error('deadline')
+            <p class="error_message">{{ $message }}</p>
+        @enderror
         <button onclick="location.href='{{ route('confirm') }}'"  class="btn-send btn-confirm center">確認画面へ</button>
     </form>
     {{-- find --}}
@@ -49,68 +50,69 @@
     追加済みタスクたち（※下部分）
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
-    <div class="listed_tasks">
-        {{-- パソコン --}}
-        <table class="table-pc">
-            <tr>
-                {{-- <th></th> --}}
-                <th>タスク作成日</th>
-                <th>タスク</th>
-                <th>期限</th>
-                <th>状態</th>
-                <th>更新</th>
-                <th>削除</th>
-            </tr>
-            @foreach ($items as $item)
-            <tr>
-                {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
-                <td label="created date">{{ $item->created_at->format('Y / m / d') }}
-                    {{-- <span class="hms">{{ $item->created_at->format('H:i:s') }}</span> --}}
+    {{-- パソコン --}}
+    {{-- <table class="table-pc listed_tasks"> --}}
+    <table class="listed_tasks">
+        <tr>
+            {{-- <th></th> --}}
+            <th>タスク作成日</th>
+            <th>タスク</th>
+            <th>期限</th>
+            <th>状態</th>
+            <th>更新</th>
+            <th>削除</th>
+        </tr>
+        @foreach ($items as $item)
+        <tr>
+            {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
+            <td label="created date">
+                {{ $item->created_at->format('Y / m / d') }}
+                {{-- <span class="hms">{{ $item->created_at->format('H:i:s') }}</span> --}}
+            </td>
+            {{-- update --}}
+            <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
+                @csrf
+                <td label="task"><input class="listed-input" type="text" name="content" value="{{ $item->content }}"></td>
+                <td label="deadline"><input class="listed-input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
+                {{-- status --}}
+                <td label="status">
+                    <select name="status" id="select">
+                        @if ($item->status === "見着手")
+                            <option value="見着手" selected>見着手</option>
+                        @else
+                            <option value="見着手">見着手</option>
+                        @endif
+
+                        <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>
+                        <option value="完了" @if($item->status === "完了") selected @endif>完了</option>
+                    </select>
+                    {{-- <select name="status" id="select">
+                        @if ($item->status === "new")
+                            <option value="new" selected>new</option>
+                        @else
+                            <option value="new">new</option>
+                        @endif
+
+                        <option value="inProgress" @if($item->status === "inProgress") selected @endif>in progress</option>
+                        <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
+                    </select> --}}
                 </td>
-                {{-- update --}}
-                <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
-                    @csrf
-                    <td label="task"><input class="listed-input" type="text" name="content" value="{{ $item->content }}"></td>
-                    <td label="deadline"><input class="listed-input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
-                    {{-- status --}}
-                    <td label="status">
-                        <select name="status" id="select">
-                            @if ($item->status === "見着手")
-                                <option value="見着手" selected>見着手</option>
-                            @else
-                                <option value="見着手">見着手</option>
-                            @endif
-
-                            <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>
-                            <option value="完了" @if($item->status === "完了") selected @endif>完了</option>
-                        </select>
-                        {{-- <select name="status" id="select">
-                            @if ($item->status === "new")
-                                <option value="new" selected>new</option>
-                            @else
-                                <option value="new">new</option>
-                            @endif
-
-                            <option value="inProgress" @if($item->status === "inProgress") selected @endif>in progress</option>
-                            <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
-                        </select> --}}
-                    </td>
-                    <td><button class="btn-update">更新</button></td>
-                </form>
-                {{-- delete --}}
-                <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
-                    @csrf
-                    <td><button class="btn-delete">削除</button></td>
-                    <td><input type="hidden" name="content" value="{{ $item->content }}"></td>
-                    <td><input type="hidden" name="content" value="{{ $item->deadline }}"></td>
-                </form>
-            </tr>
-            @endforeach
-        </table>
+                <td><button class="btn-update">更新</button></td>
+            </form>
+            {{-- delete --}}
+            <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+                @csrf
+                <td><button class="btn-delete">削除</button></td>
+                <td><input type="hidden" name="content" value="{{ $item->content }}"></td>
+                <td><input type="hidden" name="content" value="{{ $item->deadline }}"></td>
+            </form>
+        </tr>
+        @endforeach
+    </table>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     スマホ
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
-        <table class="table-smart-phone">
+        {{-- <table class="table-smart-phone">
             @foreach ($items as $item)
             <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
             <tr>
@@ -139,8 +141,7 @@
             </form>
 
             @endforeach
-        </table>
-    </div>
+        </table> --}}
     <div class="pagination">
         {{ $items->links() }}
     </div>

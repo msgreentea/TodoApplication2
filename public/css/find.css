@@ -1,0 +1,11 @@
+.left input {
+    width: 50vw;
+}
+.btn-send {
+    padding: 9px 15px;
+    margin-top: 0;
+    /* margin-left: 20px; */
+}
+.error_message {
+    padding-left: 10%;
+}

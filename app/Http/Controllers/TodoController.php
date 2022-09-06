@@ -26,6 +26,7 @@ class TodoController extends Controller
             'content' => $content,
             'deadline' => $deadline,
         ];
+
         return view('confirm', $items);
     }
 
