@@ -26,7 +26,7 @@
             </p>
         </div>
         @error('content')
-            <p class="error_message">{{ $message }}</p>
+            <p class="error_message red">{{ $message }}</p>
         @enderror
         <div class="input_task center">
             <p class="left">
@@ -37,7 +37,7 @@
             </p>
         </div>
         @error('deadline')
-            <p class="error_message">{{ $message }}</p>
+            <p class="error_message red">{{ $message }}</p>
         @enderror
         <button onclick="location.href='{{ route('confirm') }}'"  class="btn-send btn-confirm center">確認画面へ</button>
     </form>

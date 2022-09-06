@@ -20,14 +20,15 @@
         @csrf
         <div class="input_task center">
             <p class="left">
-                <input type="text" name="content" value="{{ request('content')}}" placeholder="追加済みタスクを入力">
+                {{-- <input type="text" name="content" value="{{ request('content')}}" placeholder="追加済みタスクを入力"> --}}
+                <input type="text" name="content" placeholder="追加済みタスクを入力">
             </p>
             <p class="right">
                 <button class="btn-send center">検索</button>
             </p>
         </div>
         @error('content')
-            <p class="error_message">{{ $message }}</p>
+            <p class="error_message red">{{ $message }}</p>
         @enderror
     </form>
     <button class="btn-long" onclick="location.href='{{ route('index') }}'">ホーム画面に戻る</button>
@@ -39,17 +40,38 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
 
-    @if (isset($tasks))
+    @if (empty($tasks))
+        {{-- <p class="red">作成済みタスクはありません。</p> --}}
+    @elseif (isset($tasks))
+    表示
+        @foreach ($tasks as $task)
+        <tr>
+            <td><img src="/img/favicons.png" alt=""></td>
+            {{-- update --}}
+            <form action="{{ route('update', ['id' => $task->id]) }}" method="post">
+            @csrf
+                <td><input type="text" name="content" value="{{ $task->content }}"></td>
+                <td><button class="btn-update">更新</button></td>
+            </form>
+            {{-- delete --}}
+            <form action="{{ route('delete', ['id' => $task->id]) }}" method="post">
+            @csrf
+                <td><button class="btn-delete">削除</button></td>
+                <td><input class="delete" type="hidden" name="content" value="{{ $task->content }}"></td>
+            </form>
+        </tr>
+        @endforeach
+    @endif
+
+    {{-- @if (isset($tasks))
     @foreach ($tasks as $task)
     <tr>
         <td><img src="/img/favicons.png" alt=""></td>
-        {{-- update --}}
         <form action="{{ route('update', ['id' => $task->id]) }}" method="post">
         @csrf
             <td><input type="text" name="content" value="{{ $task->content }}"></td>
             <td><button class="btn-update">更新</button></td>
         </form>
-        {{-- delete --}}
         <form action="{{ route('delete', ['id' => $task->id]) }}" method="post">
         @csrf
             <td><button class="btn-delete">削除</button></td>
@@ -57,6 +79,8 @@
         </form>
     </tr>
     @endforeach
-    @endif
+    @elseif ($task == null)
+        <p class="red">作成済みタスクはありません。</p>
+    @endif --}}
 
 @endsection

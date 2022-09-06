@@ -65,16 +65,18 @@ class TodoController extends Controller
 
     public function find(Request $request)
     {
-        $this->validate($request, Task::$rules);
+        // $this->validate($request, Task::$rules);
+        // dd($request->content);
 
         // シングルクォーテーションは文字列として認識される
         $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-
+        $all = Task::all();
+        dd($all);
         $items = [
             'content' => $request->content,
             'tasks' => $tasks,
         ];
-        // dd($items);
+        dd($items);
         // return view('find', ['items' => $items]);
         return view('find', $items);
     }

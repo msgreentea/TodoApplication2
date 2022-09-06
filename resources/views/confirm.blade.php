@@ -21,7 +21,6 @@ ToDoリスト - 確認画面
                 タスク :
             </p>
             <p class="right">
-                {{-- {{ $content }} --}}
                 <input type="text" value="{{ $content }}">
                 <input type="hidden" name="content" value="{{ $content }}">
             </p>
@@ -31,7 +30,6 @@ ToDoリスト - 確認画面
                 期限 :
             </p>
             <p class="right">
-                {{-- {{ $deadline }} --}}
                 <input type="text" value="{{ $deadline }}">
                 <input type="hidden" name="deadline" value="{{ $deadline }}">
             </p>
