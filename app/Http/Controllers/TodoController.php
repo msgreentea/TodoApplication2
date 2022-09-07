@@ -69,15 +69,20 @@ class TodoController extends Controller
         // dd($request->content);
 
         // シングルクォーテーションは文字列として認識される
-        $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-        $all = Task::all();
+        // $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+        // $all = Task::all();
+
+        if (is_null(Task::where('content', 'LIKE', "%{$request->content}%")->get())) {
+            $tasks = Task::all();
+        } else {
+            return redirect()->route('find')->with('result', '作成済みタスクはありません。');
+        }
         dd($all);
         $items = [
             'content' => $request->content,
             'tasks' => $tasks,
         ];
-        dd($items);
-        // return view('find', ['items' => $items]);
+
         return view('find', $items);
     }
 }

@@ -78,28 +78,30 @@ select {
     listed tasks　（下部分）
   ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊
 */
-
-.listed_tasks tr {
-    line-height: 3;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    width: 1000px;
-    border-collapse: collapse;
-    table-layout: auto;
-    text-align: center;
+.listed_tasks {
     align-items: center;
+    table-layout: auto;
+    width: 100%;
+    /* background-color: brown; */
+}
+.listed_tasks tr {
+    padding: 10px auto;
+    margin: 10px auto;
 }
 .listed_tasks th,
 .listed_tasks td {
-    text-align: center;
-    vertical-align: middle;
+    padding: 10px 0;
 }
-/* .listed_tasks td {
-
-} */
-/* .listed_input {
-    width: 80%;
+.listed_tasks th {
+    padding-top: 20px;
+}
+.listed_input {
+    width: 90%;
+}
+/* .listed_tasks th:nth-child(2),
+.listed_tasks td:nth-child(2) {
+    margin-right: 50px;
+    padding-right: 50px;
 } */
 .pagination {
     text-align: center;
@@ -136,7 +138,6 @@ button:hover {
 
 /* 確認画面へ・検索ボタン */
 .btn-send {
-    /* ↓、findで悪さするかも */
     display: block;
     border: 2px solid #d0b8ac;
     color: #d0b8ac;
@@ -148,9 +149,9 @@ button:hover {
 
 /* 更新ボタン */
 .btn-update {
+    padding: 10px 15px;
     border: 2px solid #edc4ab;
     color: #edc4ab;
-    padding: 10px 15px;
 }
 .btn-update:hover {
     background-color: #edc4ab;
@@ -158,9 +159,9 @@ button:hover {
 
 /* 削除ボタン */
 .btn-delete {
+    padding: 10px 15px;
     border: 2px solid #e5d5c7;
     color: #e5d5c7;
-    padding: 10px 15px;
 }
 .btn-delete:hover {
     background-color: #e5d5c7;

@@ -52,7 +52,7 @@
 @section('content')
     {{-- パソコン --}}
     {{-- <table class="table-pc listed_tasks"> --}}
-    <table class="listed_tasks">
+    <table class="listed_tasks center">
         <tr>
             {{-- <th></th> --}}
             <th>タスク作成日</th>
@@ -72,8 +72,8 @@
             {{-- update --}}
             <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
                 @csrf
-                <td label="task"><input class="listed-input" type="text" name="content" value="{{ $item->content }}"></td>
-                <td label="deadline"><input class="listed-input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
+                <td label="task"><input class="listed_input" type="text" name="content" value="{{ $item->content }}"></td>
+                <td label="deadline"><input class="listed_input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
                 {{-- status --}}
                 <td label="status">
                     <select name="status" id="select">
@@ -103,8 +103,8 @@
             <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
                 @csrf
                 <td><button class="btn-delete">削除</button></td>
-                <td><input type="hidden" name="content" value="{{ $item->content }}"></td>
-                <td><input type="hidden" name="content" value="{{ $item->deadline }}"></td>
+                <input type="hidden" name="content" value="{{ $item->content }}">
+                <input type="hidden" name="content" value="{{ $item->deadline }}">
             </form>
         </tr>
         @endforeach
