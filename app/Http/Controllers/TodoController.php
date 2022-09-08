@@ -11,7 +11,6 @@ class TodoController extends Controller
     {
         $items = Task::all();
         $items = Task::simplePaginate(3);
-        // dd($items);
         return view('index', ['items' => $items]);
     }
 
@@ -65,24 +64,15 @@ class TodoController extends Controller
 
     public function find(Request $request)
     {
-        // $this->validate($request, Task::$rules);
-        // dd($request->content);
+        $validateDate = $request->validate([
+            'content' => 'required'
+        ]);
 
-        // シングルクォーテーションは文字列として認識される
-        // $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
-        // $all = Task::all();
-
-        if (is_null(Task::where('content', 'LIKE', "%{$request->content}%")->get())) {
-            $tasks = Task::all();
-        } else {
+        if (Task::where('content', 'LIKE', "%{$request->content}%")->get()) {
+            $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
+            return view('find', compact('tasks'));
+        } elseif (is_null(Task::where('content', 'LIKE', "%{$request->content}%")->get())) {
             return redirect()->route('find')->with('result', '作成済みタスクはありません。');
         }
-        dd($all);
-        $items = [
-            'content' => $request->content,
-            'tasks' => $tasks,
-        ];
-
-        return view('find', $items);
     }
 }

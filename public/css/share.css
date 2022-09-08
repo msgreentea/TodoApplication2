@@ -81,8 +81,8 @@ select {
 .listed_tasks {
     align-items: center;
     table-layout: auto;
+    table-layout: fixed;
     width: 100%;
-    /* background-color: brown; */
 }
 .listed_tasks tr {
     padding: 10px auto;
@@ -95,14 +95,9 @@ select {
 .listed_tasks th {
     padding-top: 20px;
 }
-.listed_input {
-    width: 90%;
+.listed_tasks input[type="text"] {
+    width: 80%;
 }
-/* .listed_tasks th:nth-child(2),
-.listed_tasks td:nth-child(2) {
-    margin-right: 50px;
-    padding-right: 50px;
-} */
 .pagination {
     text-align: center;
     padding-top: 30px;
