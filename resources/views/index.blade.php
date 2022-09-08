@@ -50,9 +50,8 @@
     追加済みタスクたち（※下部分）
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
-    {{-- パソコン --}}
-    {{-- <table class="table-pc listed_tasks"> --}}
-    <table class="listed_tasks center">
+    {{-- * * * * * * * * * * * * * * * * * * * * * pc * * * * * * * * * * * * * * * * * * * * * --}}
+    <table class="listed_tasks center pc">
         <tr>
             {{-- <th></th> --}}
             <th width="15%">タスク作成日</th>
@@ -65,18 +64,21 @@
         @foreach ($items as $item)
         <tr>
             {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
-            <td label="created date" width="15%">
+            <td width="15%">
                 {{ $item->created_at->format('Y / m / d') }}
-                {{-- <span class="hms">{{ $item->created_at->format('H:i:s') }}</span> --}}
             </td>
             {{-- update --}}
             <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
                 @csrf
-                <td label="task" width="25%"><input class="listed_input" type="text" name="content" value="{{ $item->content }}"></td>
-                <td label="deadline" width="25%"><input class="listed_input" type="text" name="deadline" value="{{ $item->deadline }}"></td>
+                <td label="task" width="25%">
+                    <input class="listed_input" type="text" name="content" value="{{ $item->content }}">
+                </td>
+                <td label="deadline" width="25%">
+                    <input class="listed_input" type="text" name="deadline" value="{{ $item->deadline }}">
+                </td>
                 {{-- status --}}
-                <td label="status" width="10%">
-                    <select name="status" id="select">
+                <td label="status" width="10%" class="">
+                    <select name="status" id="select" class="center">
                         @if ($item->status === "見着手")
                             <option value="見着手" selected>見着手</option>
                         @else
@@ -109,24 +111,37 @@
         </tr>
         @endforeach
     </table>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    スマホ
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
-        {{-- <table class="table-smart-phone">
-            @foreach ($items as $item)
+
+    {{-- * * * * * * * * * * * * * * * * * * * * * mobile * * * * * * * * * * * * * * * * * * * * * --}}
+    <table class="listed_tasks center mobile">
+        <tr>
+            {{-- <th></th> --}}
+            <th width="12%">タスク作成日</th>
+            <th width="15%">タスク</th>
+            <th width="15%">期限</th>
+            <th width="8%">状態</th>
+            {{-- <th width="8%">更新</th>
+            <th width="8%">削除</th> --}}
+        </tr>
+        @foreach ($items as $item)
+        <tr>
+            {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
+            <td width="12%">
+                {{ $item->created_at->format('m / d') }}
+            </td>
+            {{-- update --}}
             <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
-            <tr>
-                <th>作成日</th>
-                <td>{{ $item->created_at->format('Y-m-d') }}</td>
-                <th>タスク</th>
-                <td><input type="text" name="content" value="{{ $item->content }}"></td>
-                <th>期限</th>
-                <td><input type="text" name="deadline" value="{{ $item->deadline }}"></td>
-            </tr>
-            <tr>
-                <td label="status">
-                    <select name="status" id="select" class="select">
-                        @if ($item->status === "追加済み")
+                @csrf
+                <td label="task" width="15%">
+                    <input class="listed_input" type="text" name="content" value="{{ $item->content }}">
+                </td>
+                <td label="deadline" width="15%">
+                    <input class="listed_input" type="text" name="deadline" value="{{ $item->deadline }}">
+                </td>
+                {{-- status --}}
+                <td label="status" width="8%" class="">
+                    <select name="status" id="select" class="center">
+                        @if ($item->status === "見着手")
                             <option value="見着手" selected>見着手</option>
                         @else
                             <option value="見着手">見着手</option>
@@ -135,13 +150,33 @@
                         <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>
                         <option value="完了" @if($item->status === "完了") selected @endif>完了</option>
                     </select>
-                </td>
-                <td><button class="btn-update">更新</button></td>
-            </tr>
-            </form>
+                    {{-- <select name="status" id="select">
+                        @if ($item->status === "new")
+                            <option value="new" selected>new</option>
+                        @else
+                            <option value="new">new</option>
+                        @endif
 
-            @endforeach
-        </table> --}}
+                        <option value="inProgress" @if($item->status === "inProgress") selected @endif>in progress</option>
+                        <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
+                    </select> --}}
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2"><button class="btn-update" width="45%">更新</button></td>
+            </form>
+            {{-- delete --}}
+            <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+                @csrf
+                <td colspan="2"><button class="btn-delete" width="45%">削除</button></td>
+                <input type="hidden" name="content" value="{{ $item->content }}">
+                <input type="hidden" name="content" value="{{ $item->deadline }}">
+            </form>
+        </tr>
+        @endforeach
+    </table>
+
+
     <div class="pagination">
         {{ $items->links() }}
     </div>

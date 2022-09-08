@@ -34,7 +34,6 @@ class TodoController extends Controller
         $this->validate($request, Task::$rules);
 
         $task = $request->all();
-        // dd($task);
         Task::create($task);
         return redirect('/');
     }
