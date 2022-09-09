@@ -112,16 +112,14 @@
         @endforeach
     </table>
 
-    {{-- * * * * * * * * * * * * * * * * * * * * * mobile * * * * * * * * * * * * * * * * * * * * * --}}
-    <table class="listed_tasks center mobile">
+    {{-- * * * * * * * * * * * * * * * * * * * * * タブレット tablet * * * * * * * * * * * * * * * * * * * * * --}}
+    <table class="listed_tasks center tablet">
         <tr>
             {{-- <th></th> --}}
             <th width="12%">タスク作成日</th>
             <th width="15%">タスク</th>
             <th width="15%">期限</th>
             <th width="8%">状態</th>
-            {{-- <th width="8%">更新</th>
-            <th width="8%">削除</th> --}}
         </tr>
         @foreach ($items as $item)
         <tr>
@@ -162,13 +160,80 @@
                     </select> --}}
                 </td>
         </tr>
-        <tr>
+        <tr class="border-bottom">
                 <td colspan="2"><button class="btn-update" width="45%">更新</button></td>
             </form>
             {{-- delete --}}
             <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
                 @csrf
                 <td colspan="2"><button class="btn-delete" width="45%">削除</button></td>
+                <input type="hidden" name="content" value="{{ $item->content }}">
+                <input type="hidden" name="content" value="{{ $item->deadline }}">
+            </form>
+        </tr>
+        @endforeach
+    </table>
+
+
+    {{-- * * * * * * * * * * * * * * * * * * * * * スマホ mobile * * * * * * * * * * * * * * * * * * * * * --}}
+    <table class="listed_tasks center mobile">
+
+        @foreach ($items as $item)
+        {{-- ******** 1 ******** --}}
+        <tr>
+            <td>
+                {{ $item->created_at->format('m/d') }}
+            </td>
+            <td colspan="5"></td>
+            {{-- update --}}
+            <form action="{{ route('update', ['id' => $item->id]) }}" method="post">
+                @csrf
+                {{-- status --}}
+                <td label="status" colspan="2">
+                    <select name="status" id="select" class="center">
+                        @if ($item->status === "見着手")
+                            <option value="見着手" selected>見着手</option>
+                        @else
+                            <option value="見着手">見着手</option>
+                        @endif
+
+                        <option value="進行中" @if($item->status === "進行中") selected @endif>進行中</option>
+                        <option value="完了" @if($item->status === "完了") selected @endif>完了</option>
+                    </select>
+                    {{-- <select name="status" id="select">
+                        @if ($item->status === "new")
+                            <option value="new" selected>new</option>
+                        @else
+                            <option value="new">new</option>
+                        @endif
+
+                        <option value="inProgress" @if($item->status === "inProgress") selected @endif>in progress</option>
+                        <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
+                    </select> --}}
+                </td>
+        </tr>
+        {{-- ******** 2 ******** --}}
+        <tr>
+            <td class="td-text">タスク</td>
+            <td label="task" colspan="7">
+                <input class="listed_input" type="text" name="content" value="{{ $item->content }}">
+            </td>
+        </tr>
+        {{-- ******** 3 ******** --}}
+        <tr>
+            <td class="td-text">期限</td>
+            <td label="deadline" colspan="7">
+                <input class="listed_input" type="text" name="deadline" value="{{ $item->deadline }}">
+            </td>
+        </tr>
+        {{-- ******** 4 ******** --}}
+        <tr class="border-bottom">
+                <td colspan="4"><button class="btn-update">更新</button></td>
+            </form>
+            {{-- delete --}}
+            <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
+                @csrf
+                <td colspan="4"><button class="btn-delete">削除</button></td>
                 <input type="hidden" name="content" value="{{ $item->content }}">
                 <input type="hidden" name="content" value="{{ $item->deadline }}">
             </form>

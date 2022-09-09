@@ -163,24 +163,30 @@ button:hover {
     レスポンシブ
   ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊ ＊
 */
-/* ****************************************** pc ************************************************ */
+/* * * * * * * * * * * * * * * * * * * * * * pc * * * * * * * * * * * * * * * * * * * * * */
+.tablet,
 .mobile {
     display: none;
 }
+.border-bottom {
+    border-bottom: 2px dotted#d0b8ace5;
+}
 
-/* ****************************************** タブレット ************************************************ */
+/* * * * * * * * * * * * * * * * * * * * * * タブレット tablet * * * * * * * * * * * * * * * * * * * * * */
 @media (max-width: 1024px) {
     body {
         padding: 0 2%;
+        height: 100%;
     }
     .container {
         margin: 10% auto;
         width: 90%;
     }
-    .pc {
+    .pc,
+    .mobile {
         display: none;
     }
-    .mobile {
+    .tablet {
         display: block;
     }
     .btn-update,
@@ -189,28 +195,78 @@ button:hover {
         padding: 5px;
         /* margin-bottom: 20px; */
     }
-    tr:nth-child(3) {
-        border-bottom: 2px dotted#d0b8ace5;
-    }
     .listed_tasks td {
-        padding: 20px 0;
+        padding: 10px 0;
         /* padding-bottom: 20px; */
     }
     .listed_tasks td:nth-child(2) {
         padding-top: 0px;
     }
 }
-/* スマホ */
+/* * * * * * * * * * * * * * * * * * * * * * スマホ mobile * * * * * * * * * * * * * * * * * * * * * */
 @media (max-width: 599px) {
-    /* input,
-    td {
-        display: block;
-        width: 100%;
-    } */
-    .table-pc {
+    .pc,
+    .tablet {
         display: none;
     }
-    .table-smart-phone {
-        display: flex;
+    .mobile {
+        /* width: 100%; */
+        /* ↓これが無かったから幅100%にならなかった */
+        display: table;
+    }
+    body {
+        height: 100%;
+        padding: 0 1%;
+        font-size: 12px;
+    }
+    input {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .container {
+        padding: 4%;
+        padding-top: 20px;
+    }
+    .background {
+        border-right: 2px dotted #a58d81;
+        border-left: 2px dotted #a58d81;
+    }
+
+    .right {
+        margin-left: 5px;
+    }
+    /* 下半分 */
+    table {
+        width: 100%;
+        padding: 50px 0;
+    }
+    .listed_tasks input[type="text"],
+    select {
+        width: 85%;
+        width: 90%;
+    }
+    .listed_tasks th {
+        margin-top: 50px;
+    }
+    .listed_tasks td {
+        padding: 7px 0;
+    }
+    button,
+    select {
+        padding: 5px;
+    }
+    .btn-send {
+        padding: 7px;
+    }
+    select {
+        font-size: 12px;
+    }
+    .td-text {
+        font-size: 10px;
+    }
+    tr:nth-child(3) {
+        border-bottom: none;
     }
 }
