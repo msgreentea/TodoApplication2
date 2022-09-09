@@ -9,8 +9,10 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $items = Task::all();
-        $items = Task::simplePaginate(3);
+        // $items = Task::all();
+        // desc （降順）、新しい(idの数字が大きい)ものから並べる
+        $items = Task::orderBy('id', 'desc')->simplePaginate(3);
+
         return view('index', ['items' => $items]);
     }
 
@@ -68,6 +70,7 @@ class TodoController extends Controller
         ]);
 
         if (Task::where('content', 'LIKE', "%{$request->content}%")->get()) {
+            // asc （昇順）、古い(idの数字が小さい)ものから並べる
             $tasks = Task::where('content', 'LIKE', "%{$request->content}%")->get();
             return view('find', compact('tasks'));
         } elseif (is_null(Task::where('content', 'LIKE', "%{$request->content}%")->get())) {
