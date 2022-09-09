@@ -17,19 +17,19 @@ ToDoリスト - 確認画面
     <form action="{{ route('create') }}" method="post">
     @csrf
         <div class="input_task center">
-            <p class="left">
+            <p class="input_task_left">
                 タスク :
             </p>
-            <p class="right">
+            <p class="input_task_right">
                 <input type="text" value="{{ $content }}">
                 <input type="hidden" name="content" value="{{ $content }}">
             </p>
         </div>
         <div class="input_task center">
-            <p class="left">
+            <p class="input_task_left">
                 期限 :
             </p>
-            <p class="right">
+            <p class="input_task_right">
                 <input type="text" value="{{ $deadline }}">
                 <input type="hidden" name="deadline" value="{{ $deadline }}">
             </p>

@@ -61,7 +61,11 @@ select {
     /* 縦方向の中央寄せ（親要素に指定） */
     align-items: center;
 }
-.right {
+.input_task_left {
+    text-align: right;
+    width: 15%;
+}
+.input_task_right {
     margin-left: 20px;
 }
 
@@ -140,7 +144,8 @@ button:hover {
 
 /* 更新ボタン */
 .btn-update {
-    padding: 10px 15px;
+    padding: 10px 0;
+    width: 90%;
     border: 2px solid #edc4ab;
     color: #edc4ab;
 }
@@ -150,7 +155,8 @@ button:hover {
 
 /* 削除ボタン */
 .btn-delete {
-    padding: 10px 15px;
+    padding: 10px 0;
+    width: 90%;
     border: 2px solid #e5d5c7;
     color: #e5d5c7;
 }
@@ -189,15 +195,15 @@ button:hover {
     .tablet {
         display: block;
     }
+
     .btn-update,
     .btn-delete {
         width: 95%;
         padding: 5px;
-        /* margin-bottom: 20px; */
+        margin-bottom: 20px;
     }
     .listed_tasks td {
         padding: 10px 0;
-        /* padding-bottom: 20px; */
     }
     .listed_tasks td:nth-child(2) {
         padding-top: 0px;
@@ -223,7 +229,8 @@ button:hover {
         font-size: 12px;
     }
     h1 {
-        font-size: 24px;
+        font-size: 20px;
+        text-align: center;
     }
     .container {
         padding: 4%;
@@ -233,14 +240,13 @@ button:hover {
         border-right: 2px dotted #a58d81;
         border-left: 2px dotted #a58d81;
     }
-
-    .right {
-        margin-left: 5px;
+    .input_task_left {
+        width: 16%;
     }
+
     /* 下半分 */
-    table {
-        width: 100%;
-        padding: 50px 0;
+    .listed_tasks {
+        margin: 20px 0;
     }
     .listed_tasks input[type="text"],
     select {
@@ -253,20 +259,22 @@ button:hover {
     .listed_tasks td {
         padding: 7px 0;
     }
+
+    .right {
+        margin-left: 5px;
+    }
     button,
     select {
         padding: 5px;
+        font-size: 12px;
     }
     .btn-send {
         padding: 7px;
     }
-    select {
+    .td-text {
         font-size: 12px;
     }
-    .td-text {
-        font-size: 10px;
-    }
-    tr:nth-child(3) {
-        border-bottom: none;
+    .btn-update {
+        margin-bottom: 20px;
     }
 }

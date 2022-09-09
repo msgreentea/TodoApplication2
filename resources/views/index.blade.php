@@ -18,10 +18,10 @@
     <form action="{{ route('confirm') }}" method="get">
         @csrf
         <div class="input_task center">
-            <p class="left">
+            <p class="input_task_left">
                 タスク :
             </p>
-            <p class="right">
+            <p class="input_task_right">
                 <input type="text" name="content" placeholder="追加するタスクを入力">
             </p>
         </div>
@@ -29,10 +29,10 @@
             <p class="error_message red">{{ $message }}</p>
         @enderror
         <div class="input_task center">
-            <p class="left">
+            <p class="input_task_left">
                 期限 :
             </p>
-            <p class="right">
+            <p class="input_task_right">
                 <input type="text" name="deadline" placeholder="期限を入力">
             </p>
         </div>
@@ -50,7 +50,7 @@
     追加済みタスクたち（※下部分）
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
 @section('content')
-    {{-- * * * * * * * * * * * * * * * * * * * * * pc * * * * * * * * * * * * * * * * * * * * * --}}
+{{-- * * * * * * * * * * * * * * * * * * * * * pc * * * * * * * * * * * * * * * * * * * * * --}}
     <table class="listed_tasks center pc">
         <tr>
             {{-- <th></th> --}}
@@ -99,12 +99,12 @@
                         <option value="completed" @if($item->status === "completed") selected @endif>completed</option>
                     </select> --}}
                 </td>
-                <td><button class="btn-update" width="7%">更新</button></td>
+                <td><button class="btn-update">更新</button></td>
             </form>
             {{-- delete --}}
             <form action="{{ route('delete', ['id' => $item->id]) }}" method="post">
                 @csrf
-                <td><button class="btn-delete" width="7%">削除</button></td>
+                <td><button class="btn-delete">削除</button></td>
                 <input type="hidden" name="content" value="{{ $item->content }}">
                 <input type="hidden" name="content" value="{{ $item->deadline }}">
             </form>
@@ -112,10 +112,9 @@
         @endforeach
     </table>
 
-    {{-- * * * * * * * * * * * * * * * * * * * * * タブレット tablet * * * * * * * * * * * * * * * * * * * * * --}}
+{{-- * * * * * * * * * * * * * * * * * * * * * タブレット tablet * * * * * * * * * * * * * * * * * * * * * --}}
     <table class="listed_tasks center tablet">
         <tr>
-            {{-- <th></th> --}}
             <th width="12%">タスク作成日</th>
             <th width="15%">タスク</th>
             <th width="15%">期限</th>
@@ -123,7 +122,6 @@
         </tr>
         @foreach ($items as $item)
         <tr>
-            {{-- <td><img src="/img/favicons.png" alt=""></td label=""> --}}
             <td width="12%">
                 {{ $item->created_at->format('m / d') }}
             </td>
@@ -175,9 +173,8 @@
     </table>
 
 
-    {{-- * * * * * * * * * * * * * * * * * * * * * スマホ mobile * * * * * * * * * * * * * * * * * * * * * --}}
+{{-- * * * * * * * * * * * * * * * * * * * * * スマホ mobile * * * * * * * * * * * * * * * * * * * * * --}}
     <table class="listed_tasks center mobile">
-
         @foreach ($items as $item)
         {{-- ******** 1 ******** --}}
         <tr>

@@ -8,3 +8,13 @@
 .error_message {
     padding-left: 17%;
 }
+@media (max-width: 1024px) {
+    .error_message {
+        padding-left: 26%;
+    }
+}
+@media (max-width: 599px) {
+    .error_message {
+        padding-left: 28%;
+    }
+}
